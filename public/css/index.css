@@ -1,0 +1,218 @@
+.tab-info {
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+}
+
+.tab-info .wrapper{
+	width: 1040px;
+	margin-top: 40px;
+}
+
+.tab-info .tab-name{
+	font-size: 26px;
+}
+
+.tab-info .tab-explain{
+	color: #666;
+	font-size: 12px;
+	margin-left: 20px;
+}
+
+.main {
+	margin-top: 25px;
+	display: flex;
+	justify-content: center;
+}
+
+.main .wrapper {
+	width: 1040px;
+	display: flex;
+	flex-direction: row;
+}
+
+.main .articles {
+	flex-grow: 3;
+}
+
+.main .articles .item {
+	display: flex;
+	flex-direction: row;
+	margin-top: 15px;
+}
+
+.main .articles .like {
+	width: 48px;
+	height: 50px;
+	background-color: #FAE9DA;
+	color: #ca6445;
+	font-size: 13px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	line-height: 17px;
+}
+
+.main .articles .article {
+	margin-left: 20px;
+	border-bottom: 1px solid #E5E5E5;
+	width: 100%;
+}
+
+.main .articles .title h3 {
+	font-size: 15px;
+	line-height: 15px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	display: inline-block;
+}
+
+.main .articles .title{
+	color: #37A;
+}
+
+.main .articles .title:hover{
+	background-color: #37A;
+	color:#fff;
+}
+
+.main .articles .content{
+	background-color: #F9F9F9;
+	font-size: 13px;
+	display: flex;
+	flex-direction: row;
+	padding: 10px;
+	margin-top: 10px;
+	width: 620px;
+}
+
+.main .articles .content img {
+	width: 60px;
+	height: 60px;
+}
+
+.main .articles .content p {
+	margin-left: 10px;
+	color: #999;
+}
+
+.main .articles .info {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.main .articles .info span, .main .articles .info a{
+	font-size: 13px;
+	color: #666;
+}
+
+.main .articles .info a:hover{
+	background-color: #37A;
+	color: #FFF;
+}
+
+.main .articles .info .time {
+	margin-left: 20px;
+	color: #999;
+}
+
+.main .groups {
+	flex-basis: 300px;
+	margin-left: 50px;
+}
+
+.main .groups h2 {
+	font-size: 14px;
+	color: #666;
+}
+
+.main .groups h2, .main .groups .group{
+	border-bottom: 1px solid #E5E5E5;
+	padding-bottom: 8px;
+}
+
+.main .groups .group{
+	display: flex;
+	margin-top: 8px;
+	flex-direction: row;
+}
+
+.main .groups .group img {
+	width: 48px;
+	height: 48px;
+}
+
+.main .groups .info {
+	margin-left: 10px;
+}
+
+.main .groups a {
+	font-size: 14px;
+	color: #37a;
+	line-height: 18px;
+}
+
+.main .groups a:hover{
+	background-color: #37a;
+	color: #fff;
+}
+
+.main .groups .into-group {
+	font-size: 14px;
+	line-height: 18px;
+	margin-top: 5px;
+}
+
+.main .groups .into-group span {
+	color: #666;
+}
+
+.main .groups .into-group a {
+	margin-left: 15px;
+}
+
+.main .groups .user-info {
+	background-color: #f9f9f9;
+	display: flex;
+	padding: 10px;
+	margin-bottom: 30px;
+}
+
+.main .groups .user-info img {
+	width: 48px;
+	height: 48px;
+}
+
+.main .groups .user-info>div{
+	margin-left: 10px;
+}
+
+.main .groups .user-info>div>a {
+	font-size: 15px;
+	color: #37a;
+}
+
+.main .groups .user-info a:hover {
+	background-color: #37a;
+	color: #fff;
+}
+
+.main .groups .user-info div div {
+	margin-top: 10px;
+}
+
+.main .groups .user-info div div a {
+	font-size: 13px;
+	color: #666;
+}
+
+.main .groups .user-info div div span {
+	padding: 0 10px;
+}
+
+.wrapper .groups .build-group, .wrapper .groups .build-group:hover{
+	color: indianred;
+	background-color: #fff;
+}

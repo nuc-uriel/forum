@@ -1,0 +1,174 @@
+.page-info {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 40px;
+}
+
+.page-info .wrapper {
+	width: 1040px;
+	font-size: 26px;
+	font-weight: bold;
+}
+
+.main {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.main .wrapper {
+	width: 1040px;
+	display: flex;
+}
+
+.main .main-left{
+	flex-grow: 1;
+}
+
+.main-left .search-type {
+	display: flex;
+	border-bottom: 1px solid #ccc;
+}
+
+.main-left .search-type li {
+	margin-right: 10px;
+	padding-bottom: 10px;
+}
+
+.main-left .search-type a{
+	font-size: 13px;
+	line-height: 18px;
+	color: #37a;
+	padding: 2px 12px;
+	border-radius: 3px;
+}
+
+.main-left .search-type a:hover{
+	background-color: #37a;
+	color: #fff;
+}
+
+.main-left .search-type .active, .main-left .search-type .active:hover{
+	background-color: #70c0c0;
+	color: #fff;
+}
+
+.main-left .search-type .opt {
+	font-size: 14px;
+	flex-grow: 1;
+	text-align: right;
+}
+
+.main-left .search-type .opt a {
+	font-size: 14px;
+	color: #37a;
+}
+
+.main-left .search-type .opt a:hover {
+	background-color: #37a;
+	color: #fff;
+}
+
+.main-left .search-type .opt .active, .main-left .search-type .opt .active:hover {
+	color: #000;
+	background-color:#fff;
+}
+
+.main-left .group-list li, .main-left .member-list li{
+	display: flex;
+	font-size: 13px;
+	padding-bottom: 15px;
+	border-bottom: 1px dashed #ccc;
+	padding-top: 20px;
+}
+
+.main-left .group-list li div, .main-left .member-list li div {
+	margin-left: 20px;
+}
+
+.main-left .group-list img, .main-left .member-list img {
+	width: 48px;
+	height: 48px;
+}
+
+.main-left .group-list a, .main-left .member-list a{
+	font-size: 15px;
+	color: #37a;
+}
+
+.main-left .group-list a:hover, .main-left .member-list a:hover{
+	background-color: #37a;
+	color: #fff;
+}
+
+.main-left .group-list span, .main-left .member-list span{
+	margin-top: 10px;
+	display: block;
+}
+
+.main-left .group-list p, .main-left .member-list p{
+	color: #666;
+	margin-top: 10px;
+}
+
+.main-left .topic-list table {
+	width: 100%;
+}
+
+.main-left .topic-list td a {
+	color: #37a;
+}
+
+.main-left .topic-list td a:hover {
+	background-color: #37a;
+	color: #fff;
+}
+
+.main-left .topic-list td {
+	color: #666;
+	border-bottom: 1px dashed #DDDDDD;
+	height: 36px;
+}
+
+.main-left .topic-list td, .main-left .topic-list td a {
+	font-size: 13px;
+}
+
+.main-left .topic-list td:nth-child(1) {
+	width: 50%;
+}
+
+.main-left .topic-list td:nth-child(1) a {
+	width: 350px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	display: inline-block;
+}
+
+.group-list>li>a, .member-list>li>a{
+	height: 48px;
+}
+
+.group-list li div p, .member-list li div p {
+	width: 600px;
+	word-wrap:break-word;
+}
+
+.main .main-right {
+	flex-basis: 300px;
+	margin-left: 60px;
+	margin-top: 18px;
+}
+
+.main-right a {
+	font-size: 14px;
+	color: #37A;
+}
+
+.main-right a:hover {
+	background-color: #37A;
+	color:#FFF;
+}

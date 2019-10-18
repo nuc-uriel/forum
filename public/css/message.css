@@ -1,0 +1,342 @@
+.page-info {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 40px;
+}
+
+.page-info .wrapper {
+	width: 1040px;
+	font-size: 26px;
+	font-weight: bold;
+}
+
+.main {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.main .wrapper {
+	width: 1040px;
+	display: flex;
+}
+
+.main .main-left{
+	flex-grow: 1;
+}
+
+.main-left .opt {
+	display: flex;
+	border-bottom: 1px solid #ccc;
+	margin-top: 20px;
+}
+
+.main-left .opt li {
+	margin-right: 10px;
+	padding-bottom: 10px;
+}
+
+.main-left .opt a{
+	font-size: 13px;
+	line-height: 18px;
+	color: #37a;
+	padding: 2px 12px;
+	border-radius: 3px;
+}
+
+.main-left .opt a:hover{
+	background-color: #37a;
+	color: #fff;
+}
+
+.main-left .opt .tips {
+	height: 12px;
+	background-color: #e84a4a;
+	border-radius: 50%;
+	font-size: 10px;
+	line-height: 12px;
+	text-align: center;
+	color: #fff;
+	position: relative;
+	top: -10px;
+	left: -8px;
+	padding: 3px;
+}
+
+.main-left .opt .active, .main-left .opt .active:hover{
+	background-color: #70c0c0;
+	color: #fff;
+}
+
+.main-left .message-list li {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	border-bottom: 1px solid #e0e0e0;
+	cursor: pointer;
+}
+
+.main-left .message-list li:hover {
+	background-color: #ecf0f1;
+}
+
+.main-left .message-list li img {
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+}
+
+.main-left .message-list .tips {
+	height: 12px;
+	background-color: #e84a4a;
+	border-radius: 50%;
+	font-size: 10px;
+	line-height: 12px;
+	text-align: center;
+	color: #fff;
+	position: relative;
+	top: -20px;
+	left: -45px;
+	padding: 3px;
+}
+
+.main-left .message-list li>div{
+	margin-left: 20px;
+}
+
+.main-left .message-list li div {
+	width: 100%;
+}
+
+.main-left .message-list li div div {
+	margin-top: 10px;
+}
+
+.main-left .message-list li .username {
+	font-size: 15px;
+	color: #37a;
+}
+
+.main-left .message-list li .del-message {
+	font-size: 13px;
+	color: #37a;
+	float: right;
+}
+
+.main-left .message-list li a:hover {
+	color: #fff;
+	background-color: #37a;
+}
+
+.main-left .message-list li .date {
+	font-size: 13px;
+	color: #666;
+	float: right;
+}
+
+.main-left .message-list li .content {
+	color: #111;
+	font-size: 15px;
+	width: 500px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	display: block;
+}
+
+.main .main-left .records {
+	margin-top: 10px;
+	overflow: hidden;
+}
+
+.main .main-left .records>span{
+	font-size: 18px;
+	color: #111;
+}
+
+.main .main-left .records>a {
+	font-size: 13px;
+	color: #999;
+	margin-left: 20px;
+}
+
+.main .main-left .records>a:hover {
+	background-color: #999;
+	color: #fff;
+}
+
+.main .main-left .records ul {
+	border: 1px solid #e0e0e0;
+	padding: 10px;
+	margin-top: 20px;
+	height: 400px;
+	padding-top: 20px;
+}
+
+.main .main-left .records li {
+	display: flex;
+	padding-bottom: 30px;
+	width: 100%;
+}
+
+.main .main-left .records li img {
+	width: 48px;
+	height: 48px;
+}
+
+.main .main-left .records .friend img {
+	margin-right: 20px;
+}
+
+.main .main-left .records .myself img {
+	margin-left: 20px;
+}
+
+.main .main-left .records .myself {
+	justify-content: flex-end;
+}
+
+.main .main-left .records .friend p:before {
+	content: "";
+	width: 0px;
+	height: 0px;
+	font-size: 0px;
+	border: 10px solid rgba(0,0,0,0);
+	border-right-color: #ecf1f1;
+	position: relative;
+	top: -6px;
+	left: -33px;
+}
+
+.main .main-left .records .myself p:before {
+	content: "";
+	width: 0px;
+	height: 0px;
+	font-size: 0px;
+	border: 10px solid rgba(0,0,0,0);
+	border-left-color: #ecf1f1;
+	position: relative;
+	top: -6px;
+	left: 472px;
+}
+
+.main .main-left .records li>div {
+	width: 460px;
+	background-color: #ecf1f1;
+	border-radius: 5px;
+	padding: 15px;
+	font-size: 14px;
+}
+
+.main .main-left .records li .date {
+	color: #999;
+	font-size: 13px;
+	text-align: right;
+}
+
+.main .main-left .records li .res {
+	color: #999;
+	font-size: 13px;
+	text-align: right;
+}
+
+.main .main-left .records li .res span {
+	padding: 0 10px;
+}
+
+.main .main-left .records li a{
+	color: #37a;
+}
+
+.main .main-left .records li a:hover{
+	background-color: #37a;
+	color: #fff;
+}
+
+.main .main-left .records .tips {
+	text-align: center;
+}
+
+.main .main-left .records .tips div {
+	font-size: 12px;
+	color: #666;
+	width: auto;
+	padding: 0 20px;
+	margin: 0 auto;
+}
+
+.main .main-left .records form {
+	background: #ecf1f1;
+	font-size: 14px;
+	line-height: 150%;
+	text-align: center;
+	padding: 10px;
+}
+
+.main .main-left .records .say-in {
+	width: 460px;
+	border-radius: 5px;
+	height: 25px;
+	text-indent: 10px;
+}
+
+.main .main-left .records .say-go {
+	background-color: #389c46;
+	color: #fff;
+	font-weight: bold;
+	padding: 5px 15px;
+	border: none;
+	border-radius: 5px;
+	margin-left: 10px;
+}
+
+.main .main-left .records .say-go:hover {
+	opacity: 0.8;
+}
+
+.main .main-right {
+	flex-basis: 300px;
+	margin-left: 80px;
+	margin-top: 40px;
+}
+
+.main .main-right .user-info {
+	width: 300px;
+	background-color: #f9f9f9;
+	display: flex;
+	padding: 10px;
+}
+
+.main .main-right .user-info img {
+	width: 48px;
+	height: 48px;
+}
+
+.main .main-right .user-info>div{
+	margin-left: 10px;
+}
+
+.main .main-right .user-info>div>a {
+	font-size: 15px;
+	color: #37a;
+}
+
+.main .main-right .user-info a:hover {
+	background-color: #37a;
+	color: #fff;
+}
+
+.main .main-right .user-info div div {
+	margin-top: 10px;
+}
+
+.main .main-right .user-info div div a {
+	font-size: 13px;
+	color: #666;
+}
+
+.main .main-right .user-info div div span {
+	padding: 0 10px;
+}

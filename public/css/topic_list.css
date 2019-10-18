@@ -1,0 +1,168 @@
+.page-info {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 40px;
+}
+
+.page-info .wrapper {
+	width: 1040px;
+	font-size: 26px;
+	font-weight: bold;
+}
+
+.main {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.main .wrapper {
+	width: 1040px;
+	display: flex;
+}
+
+.main .main-left{
+	flex-grow: 1;
+}
+
+.topics .opt {
+	display: flex;
+	margin-top: 25px;
+}
+
+.topics .opt .placeholder {
+	flex-grow: 1;
+}
+
+.topics .opt .add-topic {
+	color: #ca6445;
+	padding: 2px 8px;
+	font-size: 13px;
+	border: 1px solid #f8dcc3;
+	background-color: #fae9da;
+	border-radius: 3px;
+}
+
+.topics .opt .add-topic:hover{
+	background: #fff1e3;
+	border-color: #ffe6cd;
+	color: #ca6445;
+}
+
+.topics table{
+	width: 100%;
+	margin-top: 10px;
+}
+
+.topics th, .topics td{
+	border-bottom: 1px dashed #DDDDDD;
+}
+
+.topics td {
+	text-indent: 3px;
+}
+
+.topics th {
+	font-size: 13px;
+	color: #666;
+	text-align: left;
+	font-weight: normal;
+}
+
+.topics tr img {
+	width: 10px;
+	height: 14px;
+	margin-right: 15px;
+}
+
+.topics tr a {
+	color: #37a;
+	font-size: 13px;
+	line-height: 26px;
+}
+
+.topics tr a:hover {
+	color: #fff;
+	background-color: #37a;
+}
+
+.topics tr td:first-child{
+	display: flex;
+	align-items: center;
+}
+
+.topics tr .title {
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	width: 350px;
+	flex-grow: 1;
+}
+
+.topics thead tr th:nth-child(4) {
+	text-align: right;
+}
+
+.topics tbody tr td:nth-child(4) {
+	color: #999;
+	text-align: right;
+}
+
+.main .main-right{
+	flex-basis: 300px;
+	margin-left: 60px;
+}
+
+.group-info {
+	border: 1px solid #eee;
+	width: 300px;
+}
+
+.group-info .group-top {
+	display: flex;
+	padding: 10px;
+}
+
+.group-info .group-top img{
+	width: 48px;
+	height: 48px;
+}
+
+.group-info .group-top a {
+	font-size: 15px;
+	color: #37a;
+	margin-left: 10px;
+}
+
+.group-info .group-top a:hover {
+	color: #fff;
+	background-color: #37a;
+}
+
+.group-info .group-bottom {
+	background-color: #edf6ed;
+	padding: 10px;
+	padding-left: 68px;
+}
+
+.group-info .group-bottom p{
+	font-size: 14px;
+	color: #666;
+}
+
+.group-info .group-bottom span{
+	color: #370;
+}
+
+.group-info .group-bottom a{
+	background-color: #3fa156;
+	font-size: 14px;
+	color: #fff;
+	border-radius: 3px;
+	padding: 0 10px;
+	line-height: 25px;
+	display: inline-block;
+	margin-top: 10px;
+}

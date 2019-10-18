@@ -1,0 +1,26 @@
+.page-info {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.page-info .wrapper {
+    width: 1040px;
+    font-size: 26px;
+}
+
+.page-info .wrapper p {
+    font-size: 13px;
+    margin-top: 20px;
+}
+
+.page-info .wrapper p a {
+    color: #37a;
+    font-size: 13px;
+}
+
+.page-info .wrapper p a:hover{
+    background-color: #37a;
+    color: #fff;
+}

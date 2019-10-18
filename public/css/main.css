@@ -1,0 +1,237 @@
+.navbar {
+    width: 100%;
+    height: 74px;
+    background-color: #F0F6F3;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar .wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 1040px;
+}
+
+.navbar .logo {
+    flex-basis: 145px;
+}
+
+.navbar .logo a {
+    font-size: 30px;
+    color: #0E959D;
+    font-weight: bold;
+}
+
+.navbar .tabs {
+    flex-grow: 1;
+}
+
+.navbar .tabs ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 30px;
+}
+
+.navbar .tabs li {
+    flex-grow: 1;
+}
+
+.navbar .tabs a {
+    font-size: 15px;
+    color: #0E959D;
+}
+
+.navbar .tabs a:hover {
+    color: #FFF;
+    background-color: #0E959D;
+}
+
+.navbar .search {
+    flex-basis: 282px;
+}
+
+.navbar .search form {
+    height: 30px;
+    display: flex;
+}
+
+input::-moz-placeholder {
+    color: #DADADA;
+}
+
+.navbar .search .search-in {
+    width: 250px;
+    height: 28px;
+    border: 1px solid #e1e9E1;
+    border-right: none;
+    text-indent: 13px;
+    font-size: 13px;
+}
+
+.navbar .search .search-go {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #e1e9E1;
+    border-left: none;
+    background: #FFF url(../img/bn_srh_1.png) no-repeat;
+    background-position: center;
+}
+
+.navbar .login {
+    font-size: 14px;
+    margin-left: 30px;
+}
+
+.navbar .login a {
+    color: #37a;
+}
+
+.navbar .login a:hover {
+    color: #0E959D;;
+}
+
+.footer {
+    height: 145px;
+    border-top: 2px dotted #E5E5E5;
+    margin-top: 30px;
+}
+
+.footer .links {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.footer .links a {
+    color: #4e4e4e;
+    font: 12px/12px '微软雅黑';
+}
+
+.footer .links a:hover {
+    color: #37a;
+}
+
+.footer .links span {
+    color: #4e4e4e;
+    font: 12px/12px '微软雅黑';
+    margin: 0 10px;
+}
+
+.footer p {
+    text-align: center;
+    color: #4e4e4e;
+    font: 12px/27px '微软雅黑';
+    margin-top: 10px;
+}
+
+.highcharts-credits {
+    font-size: 0px !important;
+}
+
+body .layer-inform .layui-layer-title {
+    background: #f0f6f3;
+    color: #0E959D;
+    border: none;
+    font-weight: bold;
+}
+
+body .layer-inform .layui-layer-content {
+    font-size: 13px;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+body .layer-inform .layui-layer-content a {
+    font-size: 13px;
+    color: #37a;
+}
+
+body .layer-inform .layui-layer-content a:hover {
+    background-color: #37a;
+    color: #fff;
+}
+
+body .layer-inform .layui-layer-btn a{
+    background-color: #6ebfc3;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 3px;
+    padding: 0 10px;
+    line-height: 25px;
+    display: inline-block;
+    border: 1px solid #6ebfc3;
+}
+
+body .layer-inform .layui-layer-btn a:hover{
+    opacity: 0.8;
+}
+
+body .main {
+    min-height: 600px;
+}
+
+.page {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.page ul {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    justify-content: center;
+}
+
+.page li {
+    font-size: 14px;
+    color: #aaa;
+    line-height: 16px;
+    width: auto;
+    text-align: center;
+}
+
+.page .disable {
+    color: #aaa;
+    cursor: text;
+}
+
+.page .disable:hover {
+    color: #aaa;
+    background-color: #fff;
+}
+
+.page .active {
+    cursor: text;
+    background-color: #6ebfc3;
+    color: #FFF;
+}
+
+.page .active:hover {
+    background-color: #6ebfc3;
+    color: #FFF;
+;
+}
+
+.page .active a {
+    background-color: #6ebfc3;
+    color: #FFF;
+    disaible: true;
+}
+
+.page a {
+    font-size: 14px;
+    color: #37A;
+    line-height: 16px;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin: 0 4px;
+}
+
+.page a:hover {
+    background-color: #37A;
+    color: #FFF;
+}
+

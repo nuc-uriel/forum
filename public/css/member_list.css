@@ -1,0 +1,157 @@
+.page-info {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 40px;
+}
+
+.page-info .wrapper {
+	width: 1040px;
+	font-size: 26px;
+	font-weight: bold;
+}
+
+.main {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.main .wrapper {
+	width: 1040px;
+	display: flex;
+}
+
+.main .main-left{
+	flex-grow: 1;
+}
+
+.main-left .role {
+	font-size: 16px;
+	color: #072;
+}
+
+.main-left .list {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 30px;
+}
+
+.main-left .list li {
+	width: 75px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 20px;
+}
+
+.main-left .list li img {
+	width: 48px;
+	height: 48px;
+}
+
+.main-left .list li .username{
+	color: #37a;
+	font-size: 12px;
+}
+
+.main-left .list li .username:hover {
+	color: #fff;
+	background-color: #37a;
+}
+
+.main .main-right{
+	flex-basis: 300px;
+	margin-left: 60px;
+}
+
+.group-info {
+	border: 1px solid #eee;
+	width: 300px;
+}
+
+.group-info .group-top {
+	display: flex;
+	padding: 10px;
+}
+
+.group-info .group-top img{
+	width: 48px;
+	height: 48px;
+}
+
+.group-info .group-top a {
+	font-size: 15px;
+	color: #37a;
+	margin-left: 10px;
+}
+
+.group-info .group-top a:hover {
+	color: #fff;
+	background-color: #37a;
+}
+
+.group-info .group-bottom {
+	background-color: #edf6ed;
+	padding: 10px;
+	padding-left: 68px;
+}
+
+.group-info .group-bottom p{
+	font-size: 14px;
+	color: #666;
+}
+
+.group-info .group-bottom span{
+	color: #370;
+}
+
+.group-info .group-bottom a{
+	background-color: #3fa156;
+	font-size: 14px;
+	color: #fff;
+	border-radius: 3px;
+	padding: 0 10px;
+	line-height: 25px;
+	display: inline-block;
+	margin-top: 10px;
+}
+
+.main-right h4 {
+	font-size: 16px;
+	color: #072;
+	margin-top: 10px;
+}
+
+.main-right .member-search {
+	margin-top: 10px;
+	background: #fff6ed;
+	border: 1px solid #faefe3;
+	padding: 10px 9px;
+	text-align: center;
+}
+
+.main-right .member-search .search-in {
+	font-size: 14px;
+	width: 240px;
+}
+
+.main-right .member-search .search-go {
+	margin-top: 5px;
+}
+
+.main-right .opt {
+	margin-top: 20px;
+}
+
+.main-right .opt a {
+	font-size: 14px;
+	color: #37a;
+}
+
+.main-right .opt a:hover {
+	color: #fff;
+	background-color: #37a;
+}
