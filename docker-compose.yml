@@ -1,0 +1,71 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: app.dockerfile
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    environment:
+      - "APP_ENV=local"
+      - "APP_DEBUG=true"
+    networks:
+      - mynet
+  nginx:
+    build:
+      context: ./
+      dockerfile: nginx.dockerfile
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    ports:
+      - 80:80
+    depends_on:
+      - app
+    networks:
+      - mynet
+  db:
+    image: mysql:5.7.15
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      - "MYSQL_DATABASE=bs_forum"
+      - "MYSQL_USER=homestead"
+      - "MYSQL_PASSWORD=secret"
+      - "MYSQL_ROOT_PASSWORD=secret"
+    ports:
+        - "3306:3306"
+    depends_on:
+      - app
+    networks:
+      - mynet
+  redis:
+    image: redis
+    ports: ["6379"]
+    networks:
+      - mynet
+  elasticsearch:
+    image: elasticsearch:5.1.1
+    ports:
+      - 9200
+      - 9300
+    networks:
+      - mynet
+  laravel-echo-server:
+    build:
+      context: ./
+      dockerfile: laravel-echo-server.dockerfile
+    ports:
+      - 6001:6001
+    depends_on:
+      - redis
+    networks:
+      - mynet
+
+volumes:
+  dbdata:
+
+networks:
+  mynet:

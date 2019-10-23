@@ -1,15 +1,13 @@
 {
-	"authHost": "http://forum.myhost.com",
+	"authHost": "192.168.10.2",
 	"authEndpoint": "/broadcasting/auth",
-	"clients": [
-		{
-			"appId": "561cf7104fdbd24f",
-			"key": "0454faa24fe825392d81e366321a8746"
-		}
-	],
+	"clients": [],
 	"database": "redis",
 	"databaseConfig": {
-		"redis": {},
+		"redis": {
+			"port": "6379",
+			"host": "redis"
+		},
 		"sqlite": {
 			"databasePath": "/database/laravel-echo-server.sqlite"
 		}
