@@ -23,7 +23,8 @@ linux+apache+php5.6+mysql+laravel5.4
 
 ## docker启动流程
 1. docker-compose up -d
-2. docker-compose exec app php artisan migrate
-3. docker-compose exec laravel-echo-server yarn
-4. docker-compose exec app php artisan queue:work --queue=my-broadcast,email
+2. docker-compose exec app composer install
+3. docker-compose exec app php artisan migrate
+4. docker-compose exec laravel-echo-server yarn
+5. docker-compose exec app php artisan queue:work --queue=my-broadcast,email
 
