@@ -31,7 +31,7 @@ services:
     volumes:
       - dbdata:/var/lib/mysql
     environment:
-      - "MYSQL_DATABASE=bs_forum"
+      - "MYSQL_DATABASE=forum"
       - "MYSQL_USER=homestead"
       - "MYSQL_PASSWORD=secret"
       - "MYSQL_ROOT_PASSWORD=secret"
@@ -48,6 +48,8 @@ services:
       - mynet
   elasticsearch:
     image: elasticsearch:5.1.1
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ports:
       - 9200
       - 9300
@@ -57,6 +59,8 @@ services:
     build:
       context: ./
       dockerfile: laravel-echo-server.dockerfile
+    volumes:
+      - ./:/var/www
     ports:
       - 6001:6001
     depends_on:

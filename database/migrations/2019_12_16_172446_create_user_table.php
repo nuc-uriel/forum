@@ -20,9 +20,11 @@ class CreateUserTable extends Migration
             $table->unsignedTinyInteger('sex')->default(0)->comment('性别');
             $table->unsignedTinyInteger('age')->default(0)->comment('年龄');
             $table->string('place', 32)->default('')->comment('居住地');
+            $table->string('email', 128)->default('')->comment('邮箱');
             $table->char('password', 40)->default('')->comment('用户密码(sha1加密)');
             $table->string('signature', 128)->default('')->comment('签名');
             $table->string('introduce', 5000)->default('')->comment('个人介绍');
+            $table->string('code', 32)->default('')->comment('用户唯一标识码(目前用于用户接收广播)');
             $table->unsignedTinyInteger('status')->default(0)->comment('0：未验证邮箱，1：已验证邮箱，2：被封禁，3：已删除');
             $table->string('confirmation', 32)->default('')->comment('激活码');
             $table->timestamps();

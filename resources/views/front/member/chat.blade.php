@@ -10,70 +10,6 @@
 @section('js')
     <script type="application/javascript" src="{{ asset('js/chat.js') }}"></script>
     <script type="application/javascript" src="{{ asset('js/jquery.nicescroll.min.js') }}"></script>
-@stop
-@section('main')
-    <div class="page-info">
-        <div class="wrapper">
-            <span>我的消息</span>
-        </div>
-    </div>
-    <div class="main">
-        <div class="wrapper">
-            <div class="main-left">
-                <ul class="opt" hidden="">
-                    <li><a href="/chat/list" title="" class="active">朋友私信</a><span
-                                class="tips" {{ $message_count == 0?'hidden=""':'' }}>{{ $message_count }}</span></li>
-                    <li><a href="/inform/list" title="">系统通知</a><span
-                                class="tips" {{ $inform_count == 0?'hidden=""':'' }}>{{ $inform_count }}</span></li>
-                </ul>
-                <div class="records">
-                    <span>来自{{ $friend->username }}的私信</span>
-                    <a href="javascript:history.back(-1)" title="">返回</a>
-                    <ul id="records">
-                        @foreach( $myself->getMessageForOne($friend->id) as $k=>$msg )
-                            @if($msg->uf_id == $friend->id)
-                                <li class="friend">
-                                    <img src="{{ $friend->avatar }}" alt="">
-                                    <div>
-                                        <p>{{ $msg->content }}</p>
-                                        <div class="date">{{ $msg->created_at }}</div>
-                                    </div>
-                                </li>
-                            @else
-                                <li class="myself">
-                                    <div>
-                                        <p>{{ $msg->content }}</p>
-                                        <div class="date">{{ $msg->created_at }}</div>
-                                    </div>
-                                    <img src="{{ $myself->avatar }}" alt="">
-                                </li>
-                            @endif
-                        @endforeach
-                    </ul>
-                    <form action="#" method="post" accept-charset="utf-8" id="send-msg">
-                        <input type="text" name="content" value="" placeholder="请输入聊天内容" class="say-in">
-                        <input type="submit" name="" value="发送" class="say-go">
-                    </form>
-                </div>
-            </div>
-            <div class="main-right">
-                <div class="user-info">
-                    <img src="{{ $myself->avatar }}" alt="">
-                    <div>
-                        <a href="/member" title="">我的个人主页</a>
-                        <div>
-                            <a href="/member/issue" title="">发起({{ $myself->topicsAsSender()->count() }})</a>
-                            <span>|</span>
-                            <a href="/member/respond" title="">回应({{ $myself->topicsAsCommenter()->count() }})</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-@stop
-
-@section('js_code')
     <script>
         $(function () {
             chat_channel = 'chat.' + $('meta[name=code]').attr('content');
@@ -229,4 +165,69 @@
             });
         });
     </script>
+@stop
+@section('main')
+    <div class="page-info">
+        <div class="wrapper">
+            <span>我的消息</span>
+        </div>
+    </div>
+    <div class="main">
+        <div class="wrapper">
+            <div class="main-left">
+                <ul class="opt" hidden="">
+                    <li><a href="/chat/list" title="" class="active">朋友私信</a><span
+                                class="tips" {{ $message_count == 0?'hidden=""':'' }}>{{ $message_count }}</span></li>
+                    <li><a href="/inform/list" title="">系统通知</a><span
+                                class="tips" {{ $inform_count == 0?'hidden=""':'' }}>{{ $inform_count }}</span></li>
+                </ul>
+                <div class="records">
+                    <span>来自{{ $friend->username }}的私信</span>
+                    <a href="javascript:history.back(-1)" title="">返回</a>
+                    <ul id="records">
+                        @foreach( $myself->getMessageForOne($friend->id) as $k=>$msg )
+                            @if($msg->uf_id == $friend->id)
+                                <li class="friend">
+                                    <img src="{{ $friend->avatar }}" alt="">
+                                    <div>
+                                        <p>{{ $msg->content }}</p>
+                                        <div class="date">{{ $msg->created_at }}</div>
+                                    </div>
+                                </li>
+                            @else
+                                <li class="myself">
+                                    <div>
+                                        <p>{{ $msg->content }}</p>
+                                        <div class="date">{{ $msg->created_at }}</div>
+                                    </div>
+                                    <img src="{{ $myself->avatar }}" alt="">
+                                </li>
+                            @endif
+                        @endforeach
+                    </ul>
+                    <form action="#" method="post" accept-charset="utf-8" id="send-msg">
+                        <input type="text" name="content" value="" placeholder="请输入聊天内容" class="say-in">
+                        <input type="submit" name="" value="发送" class="say-go">
+                    </form>
+                </div>
+            </div>
+            <div class="main-right">
+                <div class="user-info">
+                    <img src="{{ $myself->avatar }}" alt="">
+                    <div>
+                        <a href="/member" title="">我的个人主页</a>
+                        <div>
+                            <a href="/member/issue" title="">发起({{ $myself->topicsAsSender()->count() }})</a>
+                            <span>|</span>
+                            <a href="/member/respond" title="">回应({{ $myself->topicsAsCommenter()->count() }})</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@stop
+
+@section('js_code')
+
 @show

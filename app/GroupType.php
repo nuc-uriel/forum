@@ -24,7 +24,7 @@ class GroupType extends Model
 
     protected $table = 'group_type';
     protected $primaryKey = 'id';
-    protected $fillable = array('name','status');
+    protected $fillable = array('name','status', 'introduce', 'status', 'created_at', 'updated_at');
 
     public function groups(){
         return $this->hasMany('App\Group', 'gt_id', 'id')->where('status', '!=', Group::STATUS_DELETED);

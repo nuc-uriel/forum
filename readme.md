@@ -21,3 +21,9 @@ linux+apache+php5.6+mysql+laravel5.4
 
 - php artisan queue:work --queue=my-broadcast,email(消费队列，进入当前项目目录)
 
+## docker启动流程
+1. docker-compose up -d
+2. docker-compose exec app php artisan migrate
+3. docker-compose exec laravel-echo-server yarn
+4. docker-compose exec app php artisan queue:work --queue=my-broadcast,email
+

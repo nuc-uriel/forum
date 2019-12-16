@@ -89,7 +89,7 @@ class GroupController extends Controller
                 return result(10000, '申请已提交，请等待管理员审核');
             } catch (\Exception $e) {
                 DB::rollback();
-                return result(20000, '网络繁忙，请稍后再试！');
+                return result(20000, $e->getMessage());
             }
         }
     }
