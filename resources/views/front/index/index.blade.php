@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 @stop
 @section('js')
-    <script type="application/javascript" src="{{ asset('js/index.js') }}"></script>
 @stop
 @section('main')
     <div class="tab-info">
