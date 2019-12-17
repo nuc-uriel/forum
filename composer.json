@@ -11,7 +11,9 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "5.4.*",
         "mews/captcha": "^2.2",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "laravel/scout": "^2.0",
+        "elasticsearch/elasticsearch": "^5.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
