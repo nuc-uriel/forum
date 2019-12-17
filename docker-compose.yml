@@ -8,9 +8,11 @@ services:
     working_dir: /var/www
     volumes:
       - ./:/var/www
+    env_file:
+      - ./.env
     environment:
-      - "APP_ENV=local"
-      - "APP_DEBUG=true"
+      - "APP_ENV=${APP_ENV}"
+      - "APP_DEBUG=${APP_DEBUG}"
     networks:
       - mynet
   nginx:
@@ -30,11 +32,13 @@ services:
     image: mysql:5.7.15
     volumes:
       - dbdata:/var/lib/mysql
+    env_file:
+      - ./.env
     environment:
-      - "MYSQL_DATABASE=forum"
-      - "MYSQL_USER=homestead"
-      - "MYSQL_PASSWORD=secret"
-      - "MYSQL_ROOT_PASSWORD=secret"
+      - "MYSQL_DATABASE=${DB_DATABASE}"
+      - "MYSQL_USER=${DB_USERNAME}"
+      - "MYSQL_PASSWORD=${DB_PASSWORD}"
+      - "MYSQL_ROOT_PASSWORD=${DB_PASSWORD}"
     ports:
         - "3306:3306"
     depends_on:
