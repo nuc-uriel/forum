@@ -220,7 +220,7 @@ class UserController extends Controller
 
             $content->header('用户');
             $content->description('详情');
-            $content->type('iframe');
+//            $content->type('iframe');
 
             $headers = ['', ''];
             $rows = [

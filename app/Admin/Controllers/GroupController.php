@@ -238,7 +238,7 @@ class GroupController extends Controller
 
             $content->header('小组');
             $content->description('详情');
-            $content->type('iframe');
+//            $content->type('iframe');
 
             $headers = ['', ''];
             $rows = [
@@ -306,7 +306,7 @@ class GroupController extends Controller
             return Admin::content(function (Content $content) use ($group) {
                 $content->header('小组');
                 $content->description('撤销组长');
-                $content->type('iframe');
+//                $content->type('iframe');
                 $form = new NewForm();
                 $form->action('');
                 $form->text('', '原组长')->default($group->leader()->first()->username)->attribute(['disabled' => 'true']);
