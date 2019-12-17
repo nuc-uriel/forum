@@ -7,7 +7,10 @@ use App\GroupLog;
 use App\Inform;
 use App\Message;
 use App\Topic;
+use Elasticsearch\ClientBuilder as ElasticBuilder;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Scout\EngineManager;
+use App\Extend\Elasticsearch\ElasticsearchEngine;
 use Validator;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +22,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // 注册es引擎
+        resolve(EngineManager::class)->extend('elasticsearch', function($app) {
+            return new ElasticsearchEngine(ElasticBuilder::create()
+                ->setHosts(config('scout.elasticsearch.config.hosts'))
+                ->build(),
+                config('scout.elasticsearch.index')
+            );
+        });
+
         // 验证文件是否存在
         Validator::extend('file_exists', function ($attribute, $value, $parameters, $validator) {
             return file_exists($parameters[0]($value));

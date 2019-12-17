@@ -184,7 +184,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         // 分词工具
         Laravel\Scout\ScoutServiceProvider::class,
-        ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
         // 验证码
         Mews\Captcha\CaptchaServiceProvider::class,
         // 代码提示
