@@ -46,7 +46,7 @@ class InitEs extends Command
     protected function createIndex(Client $client)
     {
         $url = config('scout.elasticsearch.config.hosts')[0] . ':9200/' . config('scout.elasticsearch.index');
-        $client->delete($url);
+//        $client->delete($url);
         $client->put($url, [
             'json' => [
                 'settings' => [
@@ -68,7 +68,7 @@ class InitEs extends Command
     protected function createTemplate(Client $client)
     {
         $url = config('scout.elasticsearch.config.hosts')[0] . ':9200/' . '_template/tmp';
-        $client->delete($url);
+//        $client->delete($url);
         $client->put($url, [
             'json' => [
                 'template' => config('scout.elasticsearch.index'),

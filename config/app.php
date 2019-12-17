@@ -173,7 +173,8 @@ return [
          */
 
         //
-
+        // 分词工具
+        Laravel\Scout\ScoutServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -182,8 +183,6 @@ return [
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        // 分词工具
-        Laravel\Scout\ScoutServiceProvider::class,
         // 验证码
         Mews\Captcha\CaptchaServiceProvider::class,
         // 代码提示
