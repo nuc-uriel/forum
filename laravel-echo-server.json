@@ -1,5 +1,5 @@
 {
-	"authHost": "192.168.10.2",
+	"authHost": "http://nginx",
 	"authEndpoint": "/broadcasting/auth",
 	"clients": [],
 	"database": "redis",
