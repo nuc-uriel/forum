@@ -3,9 +3,7 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/search.css') }}">
 @stop
-@section('js')
-    <script type="application/javascript" src="{{ asset('js/search.js') }}"></script>
-@stop
+@section('js')@stop
 @section('main')
     <div class="page-info">
         <div class="wrapper">

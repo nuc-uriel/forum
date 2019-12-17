@@ -126,18 +126,53 @@ class ElasticsearchEngine extends Engine
      */
     protected function performSearch(Builder $builder, array $options = [])
     {
-        $params = [
-            'index' => $this->index,
-            'type' => $builder->model->searchableAs(),
-            'body' => [
-                'query' => [
-                    'bool' => [
-                        'must' => [['query_string' => [ 'query' => "*{}*"]]]
+        $query_type = 'must';
+        if(array_key_exists('query_type', $builder->query)){
+            $query_type = $builder->query['query_type'];
+            unset($builder->query['query_type']);
+        }
+        if($query_type == 'multi_match'){
+            $params = [
+                'index' => $this->index,
+                'type' => $builder->model->searchableAs(),
+                'body' => [
+                    'query' => [
+                        'bool' => [
+                            'must'=>[
+                                array(
+                                    'multi_match'=>[
+                                        'query'=>$builder->query['query'],
+                                        'fields'=>$builder->query['fields']
+                                    ]
+                                )
+                            ],
+                        ]
                     ]
                 ]
-            ]
-        ];
-
+            ];
+        }else{
+            $query_array = [];
+            foreach ($builder->query as $k=>$v) {
+                if(is_array($v)){
+                    foreach ($v as $vv){
+                        $query_array[] = ['match' => [$k=>$vv]];
+                    }
+                }else{
+                    $query_array[] = ['match' => [$k=>$v]];
+                }
+            }
+            $params = [
+                'index' => $this->index,
+                'type' => $builder->model->searchableAs(),
+                'body' => [
+                    'query' => [
+                        'bool' => [
+                            $query_type => $query_array
+                        ]
+                    ]
+                ]
+            ];
+        }
         if (isset($options['from'])) {
             $params['body']['from'] = $options['from'];
         }
@@ -147,10 +182,8 @@ class ElasticsearchEngine extends Engine
         }
 
         if (isset($options['numericFilters']) && count($options['numericFilters'])) {
-            $params['body']['query']['bool']['must'] = array_merge($params['body']['query']['bool']['must'],
-                $options['numericFilters']);
+            $params['body']['query']['bool']['must'] = isset($params['body']['query']['bool']['must'])?array_merge($params['body']['query']['bool']['must'],$options['numericFilters']):$options['numericFilters'];
         }
-
         return $this->elastic->search($params);
     }
 

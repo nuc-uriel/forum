@@ -54,9 +54,12 @@ services:
     image: elasticsearch:5.1.1
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#      - "discovery.type=single-node"
     ports:
-      - 9200
+      - 9200:9200
       - 9300
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
     networks:
       - mynet
   laravel-echo-server:
@@ -75,6 +78,7 @@ services:
 
 volumes:
   dbdata:
+  esdata:
 
 networks:
   mynet:
