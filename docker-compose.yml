@@ -65,6 +65,7 @@ services:
       dockerfile: laravel-echo-server.dockerfile
     volumes:
       - ./:/var/www
+    working_dir: /var/www
     ports:
       - 6001:6001
     depends_on:
