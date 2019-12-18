@@ -187,7 +187,7 @@ class Group extends Model
         return array(
             'id' => $this->id,
             'name' => $this->name,
-            'status' => $this->status,
+            'status' => is_null($this->status) ? 0: $this->status,
             'labels' => $this->labels->pluck('name')->implode(' ')
         );
     }

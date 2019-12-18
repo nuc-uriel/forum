@@ -82,8 +82,8 @@ class Topic extends Model
             'title' => $this->title,
             'content' => strip_tags($this->content),
             'g_id' => $this->g_id,
-            'status' => $this->status,
-            'created_at' => $this->created_at,
+            'status' => is_null($this->status) ? 0: $this->status,
+            'created_at' => is_null($this->created_at) ? time() : strtotime($this->created_at),
         );
     }
 }

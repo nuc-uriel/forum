@@ -125,9 +125,9 @@ class User extends Model
         return array(
             'id' => $this->id,
             'username' => $this->username,
-            'signature' => $this->signature,
-            'introduce' => $this->introduce,
-            'status' => $this->status
+            'signature' => is_null($this->signature) ? '': $this->signature,
+            'introduce' => is_null($this->introduce) ? '': $this->introduce,
+            'status' => is_null($this->status) ? 0: $this->status
         );
     }
 }
