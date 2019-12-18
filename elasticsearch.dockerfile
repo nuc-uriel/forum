@@ -1,5 +1,3 @@
-FROM elasticsearch:5.1.1
+FROM elasticsearch:6.8.5
 
-COPY ./elasticsearch.zip /data/
-
-RUN elasticsearch-plugin install file:/data/elasticsearch.zip
+RUN elasticsearch-plugin install -b https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v6.8.5/elasticsearch-analysis-ik-6.8.5.zip

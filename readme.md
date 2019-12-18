@@ -6,7 +6,7 @@
 - nginx 1.10
 - php 5.6
 - mysql 5.7.15
-- elasticsearch 5.1.1
+- elasticsearch 6.8.5
 - redis
 - laravel 5.4
 
@@ -23,11 +23,19 @@ php artisan queue:work --queue=my-broadcast,email(消费队列，进入当前项
 docker-compose up -d
 docker-compose exec app composer install
 docker-compose exec app php artisan migrate
+docker-compose exec app php artisan es:init
 docker-compose exec laravel-echo-server yarn
 docker-compose exec app php artisan queue:work --queue=my-broadcast,email &
 ```
 
 ## tips
 - 如果es内存分配不够异常退出，则需要：
-   1. */etc/sysctl.conf* 添加 `vm.max_map_count=655360`
-   2. `root sysctl -p`
+   1. **/etc/sysctl.conf** 添加 `vm.max_map_count=262144`
+   2. `sudo sysctl -p`
+   
+- 如果es数据表不同步，则需要：
+   ```shell script
+      docker-compose exec app php artisan scout:import "App\User"
+      docker-compose exec app php artisan scout:import "App\Group"
+      docker-compose exec app php artisan scout:import "App\Topic"
+   ```

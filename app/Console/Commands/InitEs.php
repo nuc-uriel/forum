@@ -53,13 +53,6 @@ class InitEs extends Command
                     'refresh_interval' => '5s',
                     'number_of_shards' => 1,
                     'number_of_replicas' => 0,
-                ],
-                'mappings' => [
-                    '_default_' => [
-                        '_all' => [
-                            'enabled' => false
-                        ]
-                    ]
                 ]
             ]
         ]);
@@ -74,9 +67,6 @@ class InitEs extends Command
                 'template' => config('scout.elasticsearch.index'),
                 'mappings' => [
                     '_default_' => [
-                        '_all' => [
-                            'enabled' => true
-                        ],
                         'dynamic_templates' => [
                             [
                                 'strings' => [
