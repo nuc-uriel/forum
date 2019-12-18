@@ -39,13 +39,16 @@ class InitEs extends Command
     public function handle()
     {
         $client = new Client();
-        $this->createTemplate($client);
-        $this->createIndex($client);
+        $indexs = config('scout.elasticsearch.config.indexs');
+        foreach ($indexs as $index){
+            $this->createTemplate($client, $index);
+            $this->createIndex($client, $index);
+        }
     }
 
-    protected function createIndex(Client $client)
+    protected function createIndex(Client $client, $index)
     {
-        $url = config('scout.elasticsearch.config.hosts')[0] . ':9200/' . config('scout.elasticsearch.index');
+        $url = config('scout.elasticsearch.config.hosts')[0] . ':9200/' . $index;
 //        $client->delete($url);
         $client->put($url, [
             'json' => [
@@ -58,13 +61,13 @@ class InitEs extends Command
         ]);
     }
 
-    protected function createTemplate(Client $client)
+    protected function createTemplate(Client $client, $index)
     {
         $url = config('scout.elasticsearch.config.hosts')[0] . ':9200/' . '_template/tmp';
 //        $client->delete($url);
         $client->put($url, [
             'json' => [
-                'template' => config('scout.elasticsearch.index'),
+                'template' => $index,
                 'mappings' => [
                     '_default_' => [
                         'dynamic_templates' => [
