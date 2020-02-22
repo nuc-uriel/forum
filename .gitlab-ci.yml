@@ -74,7 +74,7 @@ deploy:
     - rsync -az --force --delete --exclude=.git --exclude=.gitignore --exclude=.gitlab-ci.yml ./ $SERVER_TOKEN:$SERVER_WEB_ROOT
     - ssh $SERVER_TOKEN -t "cd $SERVER_WEB_ROOT && docker-compose up -d --build --force-recreate"
     - ssh -ttq $SERVER_TOKEN "cd $SERVER_WEB_ROOT && docker-compose exec app php artisan migrate"
-    - ssh -ttq $SERVER_TOKEN "cd $SERVER_WEB_ROOT && docker-compose exec app supervisord -c ${SERVER_WEB_ROOT}supervisord.conf"
+    - ssh -ttq $SERVER_TOKEN "cd $SERVER_WEB_ROOT && docker-compose exec app supervisord -c /var/www/supervisord.conf"
   only:
     - master
   tags:
