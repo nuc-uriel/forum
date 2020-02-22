@@ -37,3 +37,35 @@ build:
     - develop
   tags:
     - php-node
+
+test:
+  stage: test
+  image: nucuriel/php-5.6-node-12.x:1.0.0
+  script:
+#    - ./vendor/bin/phpunit
+#    - phpcs app --report=source --standard=PSR2 >> public/phpcs_source.html || echo "success"
+#    - phpcs app --standard=PSR2 >> public/phpcs.html || echo "success"
+#    - phpcs app --report=diff --standard=PSR2 >> public/phpcs_diff.diff || echo "success"
+#    - diff2html -i file -d char -s side -F public/phpcs_diff.html -- public/phpcs_diff.diff || echo "success"
+#    - phpmd app  html codesize,unusedcode,naming >> public/phpmd_Model.html || echo "success"
+    - echo "success"
+  only:
+    - master
+    - develop
+  tags:
+    - php-node
+
+deploy:
+  stage: deploy
+  image: nucuriel/php-5.6-node-12.x:1.0.0
+  script:
+    - ssh-add <(echo "$STAGING_PRIVATE_KEY")
+    - rsync -az --force --delete --exclude=.git --exclude=.gitignore --exclude=.gitlab-ci.yml ./ $SERVER_TOKEN:$SERVER_WEB_ROOT
+    - ssh $SERVER_TOKEN -t "cd $SERVER_WEB_ROOT  && docker-compose up -d --build --force-recreate"
+    - ssh $SERVER_TOKEN -t "cd $SERVER_WEB_ROOT  && docker-compose exec app php artisan migrate"
+    - ssh $SERVER_TOKEN -t "cd $SERVER_WEB_ROOT  && docker-compose exec app php artisan queue:work --queue=my-broadcast,email &"
+  only:
+    - master
+    - develop
+  tags:
+    - php-node
