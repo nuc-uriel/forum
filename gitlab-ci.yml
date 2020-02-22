@@ -15,14 +15,14 @@ cache:
     - vendor/
     - node_modules/
 
-variables:
-  MYSQL_DATABASE: forum
-  MYSQL_USER: homestead
-  MYSQL_PASSWORD: secret
-  MYSQL_ROOT_PASSWORD: secret
-
 default:
   image: nucuriel/php-5.6-node-12.x:1.0.0
+
+  variables:
+    MYSQL_DATABASE: forum
+    MYSQL_USER: homestead
+    MYSQL_PASSWORD: secret
+    MYSQL_ROOT_PASSWORD: secret
 
   services:
     - name: mysql:5.7.15
