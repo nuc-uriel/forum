@@ -72,8 +72,8 @@ deploy:
     - ssh-add <(echo "$STAGING_PRIVATE_KEY")
     - rsync -az --force --delete --exclude=.git --exclude=.gitignore --exclude=.gitlab-ci.yml ./ $SERVER_TOKEN:$SERVER_WEB_ROOT
     - ssh $SERVER_TOKEN -t "cd $SERVER_WEB_ROOT  && docker-compose up -d --build --force-recreate"
-    - ssh $SERVER_TOKEN -t "cd $SERVER_WEB_ROOT  && docker-compose exec app php artisan migrate"
-    - ssh $SERVER_TOKEN -t "cd $SERVER_WEB_ROOT  && docker-compose exec app php artisan queue:work --queue=my-broadcast,email &"
+    - ssh -Tq $SERVER_TOKEN -t "cd $SERVER_WEB_ROOT  && docker-compose exec app php artisan migrate"
+    - ssh -Tq $SERVER_TOKEN -t "cd $SERVER_WEB_ROOT  && docker-compose exec app php artisan queue:work --queue=my-broadcast,email &"
   only:
     - master
     - develop
