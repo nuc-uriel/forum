@@ -1,4 +1,4 @@
-tags:
+stages:
   - build
   - test
   - deploy
@@ -47,10 +47,9 @@ tags:
 job01:
   stage: build
   tags:
-    test
+    - test
   image: nucuriel/php-5.6-node-12.x:1.0.0
   script:
     - echo "test01"
   only:
     - develop
-
