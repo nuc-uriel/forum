@@ -3,19 +3,11 @@ stages:
   - test
   - deploy
 
-image: nucuriel/php-5.6-node-12.x:1.0.0
-
 variables:
   MYSQL_DATABASE: forum
   MYSQL_USER: homestead
   MYSQL_PASSWORD: secret
   MYSQL_ROOT_PASSWORD: secret
-
-services:
-  - name: mysql:5.7.15
-    alias: db
-  - name: redis:latest
-    alias: redis
 
 before_script:
   - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
@@ -25,6 +17,12 @@ before_script:
   
 build:
   stage: build
+  image: nucuriel/php-5.6-node-12.x:1.0.0
+  services:
+    - name: mysql:5.7.15
+      alias: db
+    - name: redis:latest
+      alias: redis
   script:
 #    - /usr/bin/composer install --no-dev
     - /usr/bin/composer install
@@ -39,6 +37,12 @@ build:
 
 test:
   stage: test
+  image: nucuriel/php-5.6-node-12.x:1.0.0
+  services:
+      - name: mysql:5.7.15
+        alias: db
+      - name: redis:latest
+        alias: redis
   script:
 #    - ./vendor/bin/phpunit
 #    - phpcs app --report=source --standard=PSR2 >> public/phpcs_source.html || echo "success"
@@ -58,6 +62,7 @@ test:
 
 deploy:
   stage: deploy
+  image: nucuriel/php-5.6-node-12.x:1.0.0
   script:
     - ssh-add <(echo "$STAGING_PRIVATE_KEY")
     - rsync -az --force --delete --exclude=.git --exclude=.gitignore --exclude=.gitlab-ci.yml ./ $SERVER_TOKEN:$SERVER_WEB_ROOT
