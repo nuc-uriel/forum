@@ -68,14 +68,14 @@ test:
 deploy:
   stage: deploy
   image: nucuriel/php-5.6-node-12.x:1.0.0
+  when: manual
   script:
     - ssh-add <(echo "$STAGING_PRIVATE_KEY")
     - rsync -az --force --delete --exclude=.git --exclude=.gitignore --exclude=.gitlab-ci.yml ./ $SERVER_TOKEN:$SERVER_WEB_ROOT
     - ssh $SERVER_TOKEN -t "cd $SERVER_WEB_ROOT  && docker-compose up -d --build --force-recreate"
     - ssh -ttq $SERVER_TOKEN "cd $SERVER_WEB_ROOT  && docker-compose exec app php artisan migrate"
-    - ssh -ttq $SERVER_TOKEN "cd $SERVER_WEB_ROOT  && docker-compose exec app php artisan queue:work --queue=my-broadcast,email &"
+    - ssh -ttq $SERVER_TOKEN "supervisord -c ${SERVER_WEB_ROOT}supervisord.conf"
   only:
     - master
-    - develop
   tags:
     - php-node
