@@ -35,4 +35,4 @@ build:
     - master
     - develop
   tags:
-    - forum
+    - php-node
