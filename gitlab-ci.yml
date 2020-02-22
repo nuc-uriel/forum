@@ -3,17 +3,17 @@ tags:
   - test
   - deploy
 
-before_script:
-  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-  - mkdir -p ~/.ssh
-  - eval $(ssh-agent -s)
-  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+#before_script:
+#  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+#  - mkdir -p ~/.ssh
+#  - eval $(ssh-agent -s)
+#  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
 
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - vendor/
-    - node_modules/
+#cache:
+#  key: ${CI_COMMIT_REF_SLUG}
+#  paths:
+#    - vendor/
+#    - node_modules/
 
 #default:
 #  image: nucuriel/php-5.6-node-12.x:1.0.0
@@ -30,19 +30,26 @@ cache:
 #    - name: redis:latest
 #      alias: redis
 
-build:
+#build:
+#  stage: build
+#  image: nucuriel/php-5.6-node-12.x:1.0.0
+#  script:
+#    - /usr/local/bin/composer install --no-dev
+#    - php artisan route:cache; php artisan config:cache; php artisan optimize --force;
+#    - php artisan migrate:refresh
+#    - yarn
+#  only:
+#    - master
+#    - develop
+#  tags:
+#    - php_node_01
+
+job01:
   stage: build
+  tags:
+    test
   image: nucuriel/php-5.6-node-12.x:1.0.0
   script:
-    - /usr/local/bin/composer install --no-dev
-    - php artisan route:cache; php artisan config:cache; php artisan optimize --force;
-    - php artisan migrate:refresh
-    - yarn
+    - echo "test01"
   only:
-    - master
     - develop
-  tags:
-    - php_node_01
-
-
-
