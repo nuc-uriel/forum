@@ -40,6 +40,7 @@ build:
     - yarn
   only:
     - master
+    - develop
   tags:
     - php_node_01
 
