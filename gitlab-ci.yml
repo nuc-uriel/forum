@@ -15,23 +15,24 @@ cache:
     - vendor/
     - node_modules/
 
-default:
-  image: nucuriel/php-5.6-node-12.x:1.0.0
+#default:
+#  image: nucuriel/php-5.6-node-12.x:1.0.0
 
-  variables:
-    MYSQL_DATABASE: forum
-    MYSQL_USER: homestead
-    MYSQL_PASSWORD: secret
-    MYSQL_ROOT_PASSWORD: secret
-
-  services:
-    - name: mysql:5.7.15
-      alias: db
-    - name: redis:latest
-      alias: redis
+#  variables:
+#    MYSQL_DATABASE: forum
+#    MYSQL_USER: homestead
+#    MYSQL_PASSWORD: secret
+#    MYSQL_ROOT_PASSWORD: secret
+#
+#  services:
+#    - name: mysql:5.7.15
+#      alias: db
+#    - name: redis:latest
+#      alias: redis
 
 build:
   stage: build
+  image: nucuriel/php-5.6-node-12.x:1.0.0
   script:
     - /usr/local/bin/composer install --no-dev
     - php artisan route:cache; php artisan config:cache; php artisan optimize --force;
@@ -40,7 +41,7 @@ build:
   only:
     - master
   tags:
-    - php-node
+    - php_node_01
 
 
 
