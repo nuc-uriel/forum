@@ -25,7 +25,6 @@ before_script:
   
 build:
   stage: build
-  image: nucuriel/php-5.6-node-12.x:1.0.0
   script:
 #    - /usr/bin/composer install --no-dev
     - /usr/bin/composer install
@@ -40,7 +39,6 @@ build:
 
 test:
   stage: test
-  image: nucuriel/php-5.6-node-12.x:1.0.0
   script:
 #    - ./vendor/bin/phpunit
 #    - phpcs app --report=source --standard=PSR2 >> public/phpcs_source.html || echo "success"
@@ -49,6 +47,9 @@ test:
 #    - diff2html -i file -d char -s side -F public/phpcs_diff.html -- public/phpcs_diff.diff || echo "success"
 #    - phpmd app  html codesize,unusedcode,naming >> public/phpmd_Model.html || echo "success"
     - echo "success"
+  artifacts:
+    paths:
+      - public
   only:
     - master
     - develop
@@ -57,7 +58,6 @@ test:
 
 deploy:
   stage: deploy
-  image: nucuriel/php-5.6-node-12.x:1.0.0
   script:
     - ssh-add <(echo "$STAGING_PRIVATE_KEY")
     - rsync -az --force --delete --exclude=.git --exclude=.gitignore --exclude=.gitlab-ci.yml ./ $SERVER_TOKEN:$SERVER_WEB_ROOT
