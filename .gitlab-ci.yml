@@ -3,6 +3,11 @@ stages:
   - test
   - deploy
 
+cache:
+  paths:
+    - vendor/
+    - node_modules/
+
 variables:
   MYSQL_DATABASE: forum
   MYSQL_USER: homestead
@@ -33,7 +38,7 @@ build:
     - master
     - develop
   tags:
-    - php-ndoe-shell
+    - php-node
 
 test:
   stage: test
@@ -58,7 +63,7 @@ test:
     - master
     - develop
   tags:
-    - php-ndoe-shell
+    - php-node
 
 deploy:
   stage: deploy
@@ -73,4 +78,4 @@ deploy:
     - master
     - develop
   tags:
-    - php-ndoe-shell
+    - php-node
