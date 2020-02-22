@@ -1,0 +1,81 @@
+stages:
+  - build
+  - test
+  - deploy
+
+cache:
+  paths:
+    - vendor/
+    - node_modules/
+
+variables:
+  MYSQL_DATABASE: forum
+  MYSQL_USER: homestead
+  MYSQL_PASSWORD: secret
+  MYSQL_ROOT_PASSWORD: secret
+
+before_script:
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  - mkdir -p ~/.ssh
+  - eval $(ssh-agent -s)
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  
+build:
+  stage: build
+  image: nucuriel/php-5.6-node-12.x:1.0.0
+  services:
+    - name: mysql:5.7.15
+      alias: db
+    - name: redis:latest
+      alias: redis
+  script:
+#    - /usr/bin/composer install --no-dev
+    - /usr/bin/composer install
+    - php artisan route:cache; php artisan config:cache; php artisan optimize --force;
+    - php artisan migrate:refresh
+    - yarn
+  only:
+    - master
+    - develop
+  tags:
+    - php-node
+
+test:
+  stage: test
+  image: nucuriel/php-5.6-node-12.x:1.0.0
+  services:
+      - name: mysql:5.7.15
+        alias: db
+      - name: redis:latest
+        alias: redis
+  script:
+#    - ./vendor/bin/phpunit
+#    - phpcs app --report=source --standard=PSR2 >> public/report/phpcs_source.html || echo "success"
+#    - phpcs app --standard=PSR2 >> public/report/phpcs.html || echo "success"
+#    - phpcs app --report=diff --standard=PSR2 >> public/report/phpcs_diff.diff || echo "success"
+#    - diff2html -i file -d char -s side -F public/report/phpcs_diff.html -- public/report/phpcs_diff.diff || echo "success"
+#    - phpmd app  html codesize,unusedcode,naming >> public/report/phpmd_Model.html || echo "success"
+    - echo "success"
+  artifacts:
+    paths:
+      - public/report
+  only:
+    - master
+    - develop
+  tags:
+    - php-node
+
+deploy:
+  stage: deploy
+  image: nucuriel/php-5.6-node-12.x:1.0.0
+  when: manual
+  script:
+    - ssh-add <(echo "$STAGING_PRIVATE_KEY")
+    - rsync -az --force --delete --exclude=.git --exclude=.gitignore --exclude=.gitlab-ci.yml ./ $SERVER_TOKEN:$SERVER_WEB_ROOT
+    - ssh $SERVER_TOKEN -t "cd $SERVER_WEB_ROOT  && docker-compose up -d --build --force-recreate"
+    - ssh -ttq $SERVER_TOKEN "cd $SERVER_WEB_ROOT  && docker-compose exec app php artisan migrate"
+    - ssh -ttq $SERVER_TOKEN "supervisord -c ${SERVER_WEB_ROOT}supervisord.conf"
+  only:
+    - master
+  tags:
+    - php-node
