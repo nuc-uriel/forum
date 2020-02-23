@@ -295,9 +295,9 @@ class GroupController extends Controller
         $group = Group::find($gid);
         if ($group) {
             $order = $request->input('order', 'hot');
-            if ($order == 'new'){
+            if ($order == 'new') {
                 $topics = $group->topics()->withCount('comments')->orderBy('is_top', 'desc')->orderBy('created_at', 'desc')->take(20)->get();
-            }else{
+            } else {
                 $topics = $group->topics()->withCount('comments')->orderBy('is_top', 'desc')->orderBy('comments_count', 'desc')->take(20)->get();
             }
 
@@ -357,7 +357,7 @@ class GroupController extends Controller
         if ($group) {
             $keyword = $request->input('keyword');
             $order = $request->input('order');
-            if ($order == 'new'){
+            if ($order == 'new') {
                 $topics = Topic::search(array(
                     'query_type' => 'multi_match',
                     'query'=>$keyword,
@@ -366,7 +366,7 @@ class GroupController extends Controller
                         'content'
                     ),
                 ))->where('g_id', $group->id)->where('status', Topic::STATUS_NORMAL)->orderBy('created_at', 'desc')->paginate(20);
-            }else{
+            } else {
                 $topics = Topic::search(array(
                     'query_type' => 'multi_match',
                     'query'=>$keyword,
@@ -390,7 +390,8 @@ class GroupController extends Controller
      * @param Request $request
      * @return array
      */
-    public function getAllChart(Request $request){
+    public function getAllChart(Request $request)
+    {
         $range = $request->input('range', 'week');
         in_array($range, array('month', 'week')) or $range='week';
         $gid = $request->input('gid');
@@ -409,7 +410,8 @@ class GroupController extends Controller
      * @param Request $request
      * @return Group[]|\App\Group[][]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Collection[]|\Illuminate\Database\Eloquent\Model[]|\Illuminate\Support\Collection|mixed|null[]
      */
-    public function getChart(Request $request){
+    public function getChart(Request $request)
+    {
         $chart = $request->input('chart', 'topic');
         in_array($chart, array('topic', 'comment', 'in', 'out')) or $chart='topic';
         $range = $request->input('range', 'week');
@@ -448,7 +450,7 @@ class GroupController extends Controller
                 break;
         }
         $end_time = time();
-        for(;$start_time<$end_time;$start_time+=86400){
+        for (; $start_time<$end_time; $start_time+=86400) {
             $res->has($start_time) or $res[$start_time] = 0;
         }
         return $res;

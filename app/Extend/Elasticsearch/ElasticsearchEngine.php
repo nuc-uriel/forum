@@ -3,7 +3,6 @@
 
 namespace App\Extend\Elasticsearch;
 
-
 use Laravel\Scout\Builder;
 use Laravel\Scout\Engines\Engine;
 use Elasticsearch\Client as Elastic;
@@ -39,8 +38,7 @@ class ElasticsearchEngine extends Engine
     {
         $params['body'] = [];
 
-        $models->each(function($model) use (&$params)
-        {
+        $models->each(function ($model) use (&$params) {
             $params['body'][] = [
                 'update' => [
                     '_id' => $model->getKey(),
@@ -67,8 +65,7 @@ class ElasticsearchEngine extends Engine
     {
         $params['body'] = [];
 
-        $models->each(function($model) use (&$params)
-        {
+        $models->each(function ($model) use (&$params) {
             $params['body'][] = [
                 'delete' => [
                     '_id' => $model->getKey(),
@@ -126,11 +123,11 @@ class ElasticsearchEngine extends Engine
     protected function performSearch(Builder $builder, array $options = [])
     {
         $query_type = 'must';
-        if(array_key_exists('query_type', $builder->query)){
+        if (array_key_exists('query_type', $builder->query)) {
             $query_type = $builder->query['query_type'];
             unset($builder->query['query_type']);
         }
-        if($query_type == 'multi_match'){
+        if ($query_type == 'multi_match') {
             $params = [
                 'index' => $builder->model->searchableAs(),
                 'type' => $builder->model->searchableAs(),
@@ -149,14 +146,14 @@ class ElasticsearchEngine extends Engine
                     ]
                 ]
             ];
-        }else{
+        } else {
             $query_array = [];
-            foreach ($builder->query as $k=>$v) {
-                if(is_array($v)){
-                    foreach ($v as $vv){
+            foreach ($builder->query as $k => $v) {
+                if (is_array($v)) {
+                    foreach ($v as $vv) {
                         $query_array[] = ['match' => [$k=>$vv]];
                     }
-                }else{
+                } else {
                     $query_array[] = ['match' => [$k=>$v]];
                 }
             }
@@ -181,7 +178,7 @@ class ElasticsearchEngine extends Engine
         }
 
         if (isset($options['numericFilters']) && count($options['numericFilters'])) {
-            $params['body']['query']['bool']['must'] = isset($params['body']['query']['bool']['must'])?array_merge($params['body']['query']['bool']['must'],$options['numericFilters']):$options['numericFilters'];
+            $params['body']['query']['bool']['must'] = isset($params['body']['query']['bool']['must'])?array_merge($params['body']['query']['bool']['must'], $options['numericFilters']):$options['numericFilters'];
         }
         return $this->elastic->search($params);
     }
@@ -227,7 +224,8 @@ class ElasticsearchEngine extends Engine
             ->pluck('_id')->values()->all();
 
         $models = $model->whereIn(
-            $model->getKeyName(), $keys
+            $model->getKeyName(),
+            $keys
         )->get()->keyBy($model->getKeyName());
 
         return collect($results['hits']['hits'])->map(function ($hit) use ($model, $models) {

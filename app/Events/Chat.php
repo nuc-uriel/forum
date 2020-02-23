@@ -27,7 +27,8 @@ class Chat implements ShouldBroadcast
 
     public $broadcastQueue = 'my-broadcast';
 
-    public function broadcastWith(){
+    public function broadcastWith()
+    {
         return array(
             'message'=>$this->message,
             'user'=>$this->message->sender

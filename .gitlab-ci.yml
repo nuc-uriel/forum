@@ -50,10 +50,10 @@ test:
         alias: redis
   script:
 #    - ./vendor/bin/phpunit
-#    - phpcs app --report=source --standard=PSR2 >> public/report/phpcs_source.html || echo "success"
-#    - phpcs app --standard=PSR2 >> public/report/phpcs.html || echo "success"
-#    - phpcs app --report=diff --standard=PSR2 >> public/report/phpcs_diff.diff || echo "success"
-#    - diff2html -i file -d char -s side -F public/report/phpcs_diff.html -- public/report/phpcs_diff.diff || echo "success"
+    - phpcs app --report=source --standard=PSR2 >> public/report/phpcs_source.html || echo "success"
+    - phpcs app --standard=PSR2 >> public/report/phpcs.html || echo "success"
+    - phpcs app --report=diff --standard=PSR2 >> public/report/phpcs_diff.diff || echo "success"
+    - diff2html -i file -d char -s side -F public/report/phpcs_diff.html -- public/report/phpcs_diff.diff || echo "success"
 #    - phpmd app  html codesize,unusedcode,naming >> public/report/phpmd_Model.html || echo "success"
     - echo "success"
   artifacts:
@@ -71,8 +71,8 @@ deploy:
   when: manual
   script:
     - ssh-add <(echo "$STAGING_PRIVATE_KEY")
-    - rsync -az --force --delete --exclude=.git --exclude=.gitignore --exclude=.gitlab-ci.yml ./ $SERVER_TOKEN:$SERVER_WEB_ROOT
-    - ssh $SERVER_TOKEN -t "cd $SERVER_WEB_ROOT && docker-compose up -d --build --force-recreate"
+    - rsync -az --force --delete --exclude=.git --exclude=.gitignore --exclude=.gitlab-ci.yml --exclude=public/uploads/ --exclude=public/temp/ --exclude=storage/logs/ ./ $SERVER_TOKEN:$SERVER_WEB_ROOT
+    - ssh -ttq $SERVER_TOKEN "cd $SERVER_WEB_ROOT && docker-compose up -d --build --force-recreate"
     - ssh -ttq $SERVER_TOKEN "cd $SERVER_WEB_ROOT && docker-compose exec app php artisan migrate"
     - ssh -ttq $SERVER_TOKEN "cd $SERVER_WEB_ROOT && docker-compose exec app supervisord -c /var/www/supervisord.conf"
   only:

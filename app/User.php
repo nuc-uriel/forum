@@ -8,7 +8,6 @@
 
 namespace App;
 
-
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
 
@@ -61,16 +60,16 @@ class User extends Model
     public function contacts()
     {
         $unread_msg = Message::select(\DB::raw('MAX(`id`) AS `id`,`group_code`'))->where('ut_id', $this->id)->where('status', Message::STATUS_UNREAD)->groupBy('group_code')->orderBy('id', 'desc')->get();
-        $read_msg = Message::select(\DB::raw('MAX(`id`) AS `id`,`group_code`'))->where(function($query){
-            $query->where(function ($query){
+        $read_msg = Message::select(\DB::raw('MAX(`id`) AS `id`,`group_code`'))->where(function ($query) {
+            $query->where(function ($query) {
                 $query->where('ut_id', $this->id)->whereIn('status', array(Message::STATUS_READ,Message::STATUS_SENDER_DELETED));
-            })->orWhere(function ($query){
+            })->orWhere(function ($query) {
                 $query->where('uf_id', $this->id)->whereNotIn('status', array(Message::STATUS_SENDER_DELETED,Message::STATUS_ALL_DELETED));
             });
         })->whereNotIn('group_code', $unread_msg->pluck('group_code'))->groupBy('group_code')->orderBy('id', 'desc')->get();
 //        $read_msg = Message::select(\DB::raw('MAX(`id`) AS `id`,`group_code`'))->where('ut_id', $this->id)->whereIn('status', array(Message::STATUS_READ,Message::STATUS_SENDER_DELETED))->whereNotIn('group_code', $unread_msg->pluck('group_code'))->groupBy('group_code')->orderBy('id', 'desc')->get();
         $ids = $unread_msg->pluck('id')->merge($read_msg->pluck('id'));
-         return Message::whereIn('id',$ids)->orderBy(\DB::raw('field(`id`, '.$ids->implode(',').')'));
+         return Message::whereIn('id', $ids)->orderBy(\DB::raw('field(`id`, '.$ids->implode(',').')'));
     }
 
     public function getMessageForOne($uid)
@@ -79,10 +78,10 @@ class User extends Model
         Message::where('group_code', $group_code)->where('ut_id', $this->id)->where('status', Message::STATUS_UNREAD)->update(array(
             'status' => Message::STATUS_READ
         ));
-        return Message::where(function($query){
-            $query->where(function ($query){
+        return Message::where(function ($query) {
+            $query->where(function ($query) {
                 $query->where('ut_id', $this->id)->whereIn('status', array(Message::STATUS_READ,Message::STATUS_SENDER_DELETED));
-            })->orWhere(function ($query){
+            })->orWhere(function ($query) {
                 $query->where('uf_id', $this->id)->whereNotIn('status', array(Message::STATUS_SENDER_DELETED,Message::STATUS_ALL_DELETED));
             });
         })->where('group_code', $group_code)->orderBy('created_at')->get();
@@ -90,23 +89,27 @@ class User extends Model
     }
 
     // 发表的所有帖子
-    public function topicsAsSender(){
-        return $this->hasMany('App\Topic', 'u_id', 'id')->where('status','!=', Topic::STATUS_DELETED);
+    public function topicsAsSender()
+    {
+        return $this->hasMany('App\Topic', 'u_id', 'id')->where('status', '!=', Topic::STATUS_DELETED);
     }
 
     // 发表的所有评论所在的帖子
-    public function topicsAsCommenter(){
-        return $this->belongsToMany('App\Topic', 'comment', 'u_id', 't_id')->wherePivot('status','!=', Comment::STATUS_DELETED)->withPivot('id', 'parent_id', 'content')->where('topic.status','!=', Topic::STATUS_DELETED);
+    public function topicsAsCommenter()
+    {
+        return $this->belongsToMany('App\Topic', 'comment', 'u_id', 't_id')->wherePivot('status', '!=', Comment::STATUS_DELETED)->withPivot('id', 'parent_id', 'content')->where('topic.status', '!=', Topic::STATUS_DELETED);
     }
 
     // 所有点赞所在的帖子
-    public function topicsAsLiker(){
-        return $this->belongsToMany('App\Topic', 'like', 'u_id', 't_id')->wherePivot('status','!=', Like::STATUS_DELETED)->withPivot('id', 'target_id')->where('topic.status','!=', Topic::STATUS_DELETED);
+    public function topicsAsLiker()
+    {
+        return $this->belongsToMany('App\Topic', 'like', 'u_id', 't_id')->wherePivot('status', '!=', Like::STATUS_DELETED)->withPivot('id', 'target_id')->where('topic.status', '!=', Topic::STATUS_DELETED);
     }
 
     // 所有收藏的帖子
-    public function topicsAsCollector(){
-        return $this->belongsToMany('App\Topic', 'collect', 'u_id', 't_id')->wherePivot('status','!=', Collect::STATUS_DELETED)->withPivot('id')->where('topic.status','!=', Topic::STATUS_DELETED);
+    public function topicsAsCollector()
+    {
+        return $this->belongsToMany('App\Topic', 'collect', 'u_id', 't_id')->wherePivot('status', '!=', Collect::STATUS_DELETED)->withPivot('id')->where('topic.status', '!=', Topic::STATUS_DELETED);
     }
 
     // 所有加入小组的讨论

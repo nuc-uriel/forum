@@ -23,11 +23,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // 注册es引擎
-        resolve(EngineManager::class)->extend('elasticsearch', function($app) {
+        resolve(EngineManager::class)->extend('elasticsearch', function ($app) {
             return new ElasticsearchEngine(ElasticBuilder::create()
                 ->setHosts(config('scout.elasticsearch.config.hosts'))
-                ->build()
-            );
+                ->build());
         });
 
         // 验证文件是否存在
@@ -41,7 +40,6 @@ class AppServiceProvider extends ServiceProvider
         Message::observe(\App\Observers\MessageObserver::class);
         Topic::observe(\App\Observers\TopicObserver::class);
         Comment::observe(\App\Observers\CommentObserver::class);
-
     }
 
     /**

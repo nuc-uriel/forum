@@ -8,7 +8,6 @@
 
 namespace App;
 
-
 use function foo\func;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -58,10 +57,11 @@ class Comment extends Model
         return $this->belongsTo('App\Comment', 'parent_id');
     }
 
-    public function getComments(){
+    public function getComments()
+    {
         $comments = new Collection();
-        $func = function ($comment)use(&$func, $comments){
-            foreach ($comment->comments as $com){
+        $func = function ($comment) use (&$func, $comments) {
+            foreach ($comment->comments as $com) {
                 $comments->push($com);
                 $func($com);
             }

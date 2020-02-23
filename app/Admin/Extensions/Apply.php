@@ -48,9 +48,9 @@ SCRIPT;
     protected function render()
     {
         Admin::script($this->script());
-        if($this->status == 'pass'){
+        if ($this->status == 'pass') {
             return "<a href='javascript:void(0);' class='grid-apply-row' title='通过申请' data-id='{$this->id}' data-status='{$this->status}'><i class='fa fa-check'></i></a>";
-        }else{
+        } else {
             return "<a href='javascript:void(0);' class='grid-apply-row' title='拒绝申请' data-id='{$this->id}' data-status='{$this->status}'><i class='fa fa-close'></i></a>";
         }
     }

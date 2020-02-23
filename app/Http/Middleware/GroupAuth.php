@@ -28,10 +28,10 @@ class GroupAuth
             if ($group && ($group->leader->find($uid) || $group->admin->find($uid))) {
                 return $next($request);
             }
-        }else{
-            if($request->ajax()){
+        } else {
+            if ($request->ajax()) {
                 return response()->json(result(20011));
-            }else{
+            } else {
                 abort(404);
             }
         }

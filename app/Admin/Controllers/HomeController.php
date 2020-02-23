@@ -145,7 +145,6 @@ class HomeController extends Controller
 //            ];
 //
 //            $content->row((new Box('Table', new Table($headers, $rows)))->style('info')->solid());
-
         });
     }
 
@@ -201,7 +200,8 @@ class HomeController extends Controller
         return $data;
     }
 
-    private function getGroupChart(){
+    private function getGroupChart()
+    {
         $start_time = strtotime(date('Y-m-d', strtotime("-1 month"))) + 86400;
         $res = Group::where('created_at', '>=', $start_time)->where('status', Report::STATUS_NORMAL)->withCount('comments')->orderByDesc('comments_count')->take(5)->get(array('name', 'comments_count'));
         $data = [];

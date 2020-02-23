@@ -8,7 +8,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Comment;
 use App\Group;
 use App\Inform;
@@ -94,7 +93,7 @@ class CommentController extends Controller
             return result(20024, '您不是小组成员，不可以回复该讨论帖！');
         }
         $fullname = "";
-        if($request->hasFile('img')){
+        if ($request->hasFile('img')) {
             $image = $request->file('img');
             $realPath = $image->getRealPath();
             $hash = md5_file($realPath);
@@ -170,5 +169,4 @@ class CommentController extends Controller
             return result(20000, '网络繁忙，请稍后再试！');
         }
     }
-
 }

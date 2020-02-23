@@ -41,4 +41,5 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | bash \
     && npm install -g yarn \
     && yarn config set registry https://registry.npm.taobao.org -g \
     && yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g \
-    && yarn global add laravel-echo-server@^1.5.9
+    && yarn global add laravel-echo-server@^1.5.9 \
+    && yarn global add diff2html-cli

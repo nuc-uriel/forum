@@ -3,7 +3,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Group;
 use App\GroupLog;
 use App\GroupMember;

@@ -3,7 +3,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Inform;
 use App\MemberRelationship;
 use App\User;
@@ -21,13 +20,13 @@ class MemberRelationshipController extends Controller
     {
         $target_uid = $request->input('uid');
         $uid = $request->session()->get('uid');
-        if($target_uid == $uid){
+        if ($target_uid == $uid) {
             return result(20006, '您不可以关注自己！');
         }
         $target = User::find($target_uid);
         if ($target && !$target->blacklist->find($uid)) {
             DB::beginTransaction();
-            try{
+            try {
                 $mr = MemberRelationship::updateOrCreate(array(
                     'myself_id' => $uid,
                     'other_id' => $target_uid,
@@ -42,7 +41,7 @@ class MemberRelationshipController extends Controller
                 ))->save();
                 DB::commit();
                 return result(10000, '关注成功！');
-            }catch (\Exception $e){
+            } catch (\Exception $e) {
                 DB::rollBack();
                 return result(20000, '网络繁忙，请稍后再试！');
             }
@@ -60,7 +59,7 @@ class MemberRelationshipController extends Controller
     {
         $target_uid = $request->input('uid');
         $uid = $request->session()->get('uid');
-        if($target_uid == $uid){
+        if ($target_uid == $uid) {
             return result(20006, '您不可以关注自己！');
         }
         $target = User::find($target_uid);
@@ -86,7 +85,7 @@ class MemberRelationshipController extends Controller
     {
         $target_uid = $request->input('uid');
         $uid = $request->session()->get('uid');
-        if($target_uid == $uid){
+        if ($target_uid == $uid) {
             return result(20009, '您不可以拉黑自己！');
         }
         $target = User::find($target_uid);
@@ -123,7 +122,7 @@ class MemberRelationshipController extends Controller
     {
         $target_uid = $request->input('uid');
         $uid = $request->session()->get('uid');
-        if($target_uid == $uid){
+        if ($target_uid == $uid) {
             return result(20009, '您不可以拉黑自己！');
         }
         $target = User::find($target_uid);

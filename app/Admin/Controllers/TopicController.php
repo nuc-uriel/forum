@@ -98,7 +98,7 @@ class TopicController extends Controller
                 'on'  => ['value' => Topic::CAN_COMMENT_TRUE, 'text' => '是', 'color' => 'primary'],
                 'off' => ['value' => Topic::CAN_COMMENT_FALSE, 'text' => '否', 'color' => 'default'],
             ]);
-            $grid->comments('评论数')->display(function ($comments){
+            $grid->comments('评论数')->display(function ($comments) {
                 return count($comments);
             })->sortable();
             $grid->status('状态')->display(function ($status) {
@@ -134,8 +134,8 @@ class TopicController extends Controller
             });
             $grid->tools(function ($tools) {
                 $tools->batch(function ($batch) {
-                    $batch->add('封禁', new BanOrLift('topics','ban'));
-                    $batch->add('解封', new BanOrLift('topics','lift'));
+                    $batch->add('封禁', new BanOrLift('topics', 'ban'));
+                    $batch->add('解封', new BanOrLift('topics', 'lift'));
                 });
             });
         });
@@ -226,5 +226,4 @@ class TopicController extends Controller
             ]);
         }
     }
-
 }

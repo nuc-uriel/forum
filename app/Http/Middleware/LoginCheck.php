@@ -3,7 +3,6 @@
 
 namespace App\Http\Middleware;
 
-
 use Closure;
 use Illuminate\Http\Request;
 
@@ -16,12 +15,12 @@ class LoginCheck
 {
     public function handle(Request $request, Closure $next)
     {
-        if($request->session()->has('uid')){
+        if ($request->session()->has('uid')) {
             return $next($request);
-        }else{
-            if($request->ajax()){
+        } else {
+            if ($request->ajax()) {
                 return  response()->json(result(20001));
-            }else{
+            } else {
                 return redirect()->route('login');
             }
         }

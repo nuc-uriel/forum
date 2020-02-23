@@ -36,6 +36,5 @@ class BroadcastServiceProvider extends ServiceProvider
 //        Broadcast::channel('bs.*', function ($user, $id) {
 //            return $user->id == $id;
 //        });
-
     }
 }

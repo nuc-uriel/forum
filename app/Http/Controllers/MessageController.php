@@ -3,7 +3,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Inform;
 use App\User;
 use App\Message;

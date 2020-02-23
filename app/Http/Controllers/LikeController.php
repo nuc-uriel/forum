@@ -8,7 +8,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Comment;
 use App\Inform;
 use App\Like;

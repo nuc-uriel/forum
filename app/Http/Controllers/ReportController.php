@@ -8,7 +8,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Comment;
 use App\Group;
 use App\Report;
