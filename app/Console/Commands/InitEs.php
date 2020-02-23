@@ -40,7 +40,7 @@ class InitEs extends Command
     {
         $client = new Client();
         $indexs = config('scout.elasticsearch.config.indexs');
-        foreach ($indexs as $index){
+        foreach ($indexs as $index) {
             $this->createTemplate($client, $index);
             $this->createIndex($client, $index);
         }
@@ -91,6 +91,5 @@ class InitEs extends Command
                 ]
             ]
         ]);
-
     }
 }

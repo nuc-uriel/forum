@@ -8,7 +8,6 @@
 
 namespace App\Admin\Extensions\Tools;
 
-
 use App\User;
 use Encore\Admin\Grid\Tools\BatchAction;
 
@@ -51,6 +50,5 @@ $('{$this->getElementClass()}').on('click', function() {
 });
 
 EOT;
-
     }
 }

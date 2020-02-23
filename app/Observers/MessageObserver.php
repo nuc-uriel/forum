@@ -3,7 +3,6 @@
 
 namespace App\Observers;
 
-
 use App\Message;
 
 class MessageObserver

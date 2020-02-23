@@ -8,7 +8,6 @@
 
 namespace App;
 
-
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -26,7 +25,8 @@ class GroupType extends Model
     protected $primaryKey = 'id';
     protected $fillable = array('name','status', 'introduce', 'status', 'created_at', 'updated_at');
 
-    public function groups(){
+    public function groups()
+    {
         return $this->hasMany('App\Group', 'gt_id', 'id')->where('status', '!=', Group::STATUS_DELETED);
     }
 }

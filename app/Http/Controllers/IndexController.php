@@ -8,7 +8,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Group;
 use App\GroupType;
 use App\Topic;
@@ -66,7 +65,7 @@ class IndexController extends Controller
      * @param $type
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function search(Request $request, $type='topic')
+    public function search(Request $request, $type = 'topic')
     {
         in_array($type, array('topic', 'group', 'member')) or $type = 'topic';
         $keyword = $request->input('keyword');
@@ -91,10 +90,10 @@ class IndexController extends Controller
                         'signature',
                         'introduce'
                     ),
-                ))->where('status',  User::STATUS_NORMAL)->paginate(5);
+                ))->where('status', User::STATUS_NORMAL)->paginate(5);
                 break;
             default:
-                if ($order == 'new'){
+                if ($order == 'new') {
                     $res = Topic::search(array(
                         'query_type' => 'multi_match',
                         'query'=>$keyword,
@@ -103,7 +102,7 @@ class IndexController extends Controller
                             'content'
                         ),
                     ))->where('status', Topic::STATUS_NORMAL)->orderBy('created_at', 'desc')->paginate(5);
-                }else{
+                } else {
                     $res = Topic::search(array(
                         'query_type' => 'multi_match',
                         'query'=>$keyword,

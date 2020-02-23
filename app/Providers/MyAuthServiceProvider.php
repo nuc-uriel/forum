@@ -17,10 +17,10 @@ class MyAuthServiceProvider extends AuthServiceProvider
     {
         $this->app->rebinding('request', function ($app, $request) {
             $request->setUserResolver(function ($guard = null) {
-                if(session('uid','')){
+                if (session('uid', '')) {
                     return User::find(session('uid'));
-                }else{
-                    return NULL;
+                } else {
+                    return null;
                 }
             });
         });

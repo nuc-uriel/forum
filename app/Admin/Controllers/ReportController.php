@@ -113,33 +113,33 @@ class ReportController extends Controller
                 switch ($this->type) {
                     case Report::TYPE_USER:
                         $user = User::find($target_id);
-                        if($user){
+                        if ($user) {
                             return "<a href='javascript:void(0);' class='grid-show-row' data-id='{$user->id}' data-type='users'>".str_limit($user->username, 30)."</a>";
-                        }else{
+                        } else {
                             return "未知目标";
                         }
                         break;
                     case Report::TYPE_GROUP:
                         $group = Group::find($target_id);
-                        if($group){
+                        if ($group) {
                             return "<a href='javascript:void(0);' class='grid-show-row' data-id='{$group->id}' data-type='groups'>".str_limit($group->name, 30)."</a>";
-                        }else{
+                        } else {
                             return "未知目标";
                         }
                         break;
                     case Report::TYPE_TOPIC:
                         $topic = Topic::find($target_id);
-                        if($topic){
+                        if ($topic) {
                             return "<a href='/topic/{$topic->id}' target='_blank'>".str_limit($topic->title, 30)."</a>";
-                        }else{
+                        } else {
                             return "未知目标";
                         }
                         break;
                     case Report::TYPE_COMMENT:
                         $comment = Comment::find($target_id);
-                        if($comment){
+                        if ($comment) {
                             return "<a href='/topic/{$comment->topic->id}' target='_blank'>".str_limit($comment->topic->title, 30)."</a>";
-                        }else{
+                        } else {
                             return "未知目标";
                         }
                         break;
@@ -224,36 +224,36 @@ class ReportController extends Controller
                 case Report::TYPE_USER:
                     $type = '用户';
                     $user = User::find($report->target_id);
-                    if($user){
+                    if ($user) {
                         $target = "<a href='/member?uid={$user->id}' target='_blank'>{$user->username}</a>";
-                    }else{
+                    } else {
                         $target =  "未知目标";
                     }
                     break;
                 case Report::TYPE_GROUP:
                     $type = '小组';
                     $group = Group::find($report->target_id);
-                    if($group){
+                    if ($group) {
                         $target =  "<a href='/group/{$group->id}' target='_blank'>{$group->name}</a>";
-                    }else{
+                    } else {
                         $target =  "未知目标";
                     }
                     break;
                 case Report::TYPE_TOPIC:
                     $type = '讨论';
                     $topic = Topic::find($report->target_id);
-                    if($topic){
+                    if ($topic) {
                         $target =  "<a href='/topic/{$topic->id}' target='_blank'>{$topic->title}</a>";
-                    }else{
+                    } else {
                         $target =  "未知目标";
                     }
                     break;
                 case Report::TYPE_COMMENT:
                     $type = '回复';
                     $comment = Comment::find($report->target_id);
-                    if($comment){
+                    if ($comment) {
                         $target =  "<a href='/topic/{$comment->topic->id}' target='_blank'>{$comment->topic->title}</a>";
-                    }else{
+                    } else {
                         $target =  "未知目标";
                     }
                     break;

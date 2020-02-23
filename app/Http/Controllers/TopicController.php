@@ -8,7 +8,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Group;
 use App\GroupLog;
 use App\Inform;
@@ -393,5 +392,4 @@ class TopicController extends Controller
             ));
         }
     }
-
 }

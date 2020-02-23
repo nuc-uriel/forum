@@ -8,7 +8,6 @@
 
 namespace App;
 
-
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -28,7 +27,8 @@ class GroupLabel extends Model
     protected $primaryKey = 'id';
     protected $fillable = array('g_id', 'name', 'status');
 
-    public function group(){
+    public function group()
+    {
         return $this->belongsTo('App\Group', 'g_id');
     }
 }

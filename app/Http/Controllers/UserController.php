@@ -49,7 +49,7 @@ class UserController extends Controller
      */
     public function register(Request $request)
     {
-        if($request->isMethod('GET')){
+        if ($request->isMethod('GET')) {
             return view('front.member.register');
         }
         $this->validate($request, [
@@ -88,7 +88,6 @@ class UserController extends Controller
             $job = (new SendEmail('email.register', $parameters, $user->email, '扬帆小组-账户激活'))->onQueue('email');
             dispatch($job);
             return result(10000, '注册成功！<br/ >请前往邮箱激活账号');
-
         } else {
             return result(20000, '网络繁忙，请稍后再试！');
         }
@@ -124,7 +123,7 @@ class UserController extends Controller
      */
     public function login(Request $request)
     {
-        if($request->isMethod('GET')){
+        if ($request->isMethod('GET')) {
             return view('front.member.login');
         }
         $this->validate($request, [
@@ -329,7 +328,6 @@ class UserController extends Controller
             } else {
                 return result(10001, '保存成功！' . $res);
             }
-
         } else {
             return result(20000, '网络繁忙，请稍后再试！');
         }
@@ -364,7 +362,7 @@ class UserController extends Controller
      */
     public function updatePassword(Request $request)
     {
-        if($request->isMethod('GET')){
+        if ($request->isMethod('GET')) {
             return view('front.member.update_password');
         }
         $user = User::find($request->session()->get('uid'));
@@ -394,7 +392,6 @@ class UserController extends Controller
         if ($user->save()) {
             $request->session()->flush();
             return result(10000, '修改成功！<br />请重新登录');
-
         } else {
             return result(20000, '网络繁忙，请稍后再试！');
         }
@@ -407,7 +404,7 @@ class UserController extends Controller
      */
     public function resetPassword1(Request $request)
     {
-        if($request->isMethod('GET')){
+        if ($request->isMethod('GET')) {
             return view('front.member.reset_password_1');
         }
         if ($request->has('username')) {
@@ -464,7 +461,6 @@ class UserController extends Controller
                     $user->password = sha1($request->get('new_pass'));
                     if ($user->save()) {
                         return result(10000, '修改成功！<br />请重新登录');
-
                     } else {
                         return result(20000, '网络繁忙，请稍后再试！');
                     }
@@ -474,7 +470,8 @@ class UserController extends Controller
         return view('front.tips', ['tips' => '链接已失效', 'message' => '链接已失效，请您 <a href="/login">登录</a> 试试。']);
     }
 
-    public function topics(Request $request){
+    public function topics(Request $request)
+    {
         $user = User::find(session('uid'));
         $topics = $user->topics()->orderByDesc('topic.created_at')->paginate(1);
         return view('front.member.topics', array(

@@ -8,7 +8,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Collect;
 use App\Topic;
 use Illuminate\Http\Request;

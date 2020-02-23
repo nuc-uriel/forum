@@ -40,5 +40,4 @@ class SystemInform implements ShouldBroadcast
 //    public function broadcastWith(){
 //        return ['id'=>$this->inform->id];
 //    }
-
 }

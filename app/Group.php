@@ -8,7 +8,6 @@
 
 namespace App;
 
-
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
 use function PHPSTORM_META\type;
@@ -57,7 +56,8 @@ class Group extends Model
     }
 
     // 类型
-    public function type(){
+    public function type()
+    {
         return $this->belongsTo('App\GroupType', 'gt_id');
     }
 
@@ -128,7 +128,7 @@ class Group extends Model
     }
 
     //  组日志
-    public function getLogs($type = NULL)
+    public function getLogs($type = null)
     {
         if (in_array($type, array(GroupLog::TYPE_GROUP_MANAGE, GroupLog::TYPE_MEMBER_MANAGE, GroupLog::TYPE_TOPIC_MANAGE))) {
             return $this->logs->where('type', $type)->groupBy(function ($item, $key) {

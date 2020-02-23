@@ -8,7 +8,6 @@
 
 namespace App\Observers;
 
-
 use App\Comment;
 use App\Like;
 
@@ -16,7 +15,7 @@ class CommentObserver
 {
     public function updated(Comment $comment)
     {
-        if($comment->status == Comment::STATUS_DELETED){
+        if ($comment->status == Comment::STATUS_DELETED) {
             $comment->comments()->update(array('status'=>Comment::STATUS_DELETED));
             $comment->likes()->update(array('status'=>Like::STATUS_DELETED));
         }

@@ -8,7 +8,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Inform;
 use App\Message;
 use App\User;
@@ -16,12 +15,13 @@ use Illuminate\Http\Request;
 
 class InformController extends Controller
 {
-    public function dispose(Request $request, $res, $code){
-        if(!in_array($res, array('pass', 'refuse'))){
+    public function dispose(Request $request, $res, $code)
+    {
+        if (!in_array($res, array('pass', 'refuse'))) {
             result(10030, '链接已失效！');
         }
         $inform = Inform::where('code', $code)->whereIn('status', array(Inform::STATUS_UNREAD, Inform::STATUS_READ))->first();
-        if(!$inform){
+        if (!$inform) {
             result(10030, '链接已失效！');
         }
         return $inform->dispose($request, $res == 'pass', Inform::STATUS_DENIED);
@@ -29,7 +29,7 @@ class InformController extends Controller
 
     public function show(Request $request, $type)
     {
-        if(!in_array($type, array('wait_pass', 'notify','reply','like','follow'))){
+        if (!in_array($type, array('wait_pass', 'notify','reply','like','follow'))) {
             abort(404);
         }
         $user = User::find(session('uid'));
@@ -59,8 +59,9 @@ class InformController extends Controller
         ));
     }
 
-    public function del(Request $request, $type){
-        if(!in_array($type, array('wait_pass', 'notify','reply','like','follow'))){
+    public function del(Request $request, $type)
+    {
+        if (!in_array($type, array('wait_pass', 'notify','reply','like','follow'))) {
             abort(404);
         }
         $user = User::find(session('uid'));

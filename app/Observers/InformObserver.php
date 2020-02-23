@@ -3,7 +3,6 @@
 
 namespace App\Observers;
 
-
 use App\Inform;
 use App\Events\SystemInform;
 

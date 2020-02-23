@@ -3,7 +3,6 @@
 
 namespace App;
 
-
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -102,7 +101,8 @@ class GroupLog extends Model
     }
 
     //  添加日志
-    public function addLog($type, $min_type, $parameter=array()){
+    public function addLog($type, $min_type, $parameter = array())
+    {
         $this->u_id = session('uid');
         $this->type = $type;
         $this->content = $this->jointLog($this->types[$type][$min_type]['template'], $parameter);
