@@ -52,10 +52,10 @@ test:
 #    - ./vendor/bin/phpunit
     - ./vendor/bin/phpcs app --report=source --standard=PSR2 >> public/report/phpcs_source.html || echo "success"
     - ./vendor/bin/phpcs app --standard=PSR2 >> public/report/phpcs.html || echo "success"
-    - ./vendor/bin/phpcs app --report=diff --standard=PSR2 >> public/report/phpcs_diff.diff || echo "success"
-    - diff2html -i file -d char -s side -F public/report/phpcs_diff.html -- public/report/phpcs_diff.diff || echo "success"
+#    - ./vendor/bin/phpcs app --report=diff --standard=PSR2 >> public/report/phpcs_diff.diff || echo "success"
+#    - diff2html -i file -d char -s side -F public/report/phpcs_diff.html -- public/report/phpcs_diff.diff || echo "success"
 #    - phpmd app  html codesize,unusedcode,naming >> public/report/phpmd_Model.html || echo "success"
-    - echo "success"
+#    - echo "success"
   artifacts:
     paths:
       - public/report
@@ -84,7 +84,9 @@ build-image:
   stage: build
   script:
     - docker build nucuriel/php-5.6-node-12.x:${CI_COMMIT_REF_NAME}
-    - docker push nucuriel/php-5.6-node-12.x:${CI_COMMIT_REF_NAME}"
+    - docker push nucuriel/php-5.6-node-12.x:${CI_COMMIT_REF_NAME}
+    - docker build nucuriel/php-5.6-node-12.x:1.0.0
+    - docker push nucuriel/php-5.6-node-12.x:1.0.0
   only:
     - tags
     - triggers
